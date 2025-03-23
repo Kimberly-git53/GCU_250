@@ -28,7 +28,7 @@ namespace CarClassLibrary
             IsNew = isNew;
             SizeOfEngine = sizeOfEngine;
         }
-        // Initializing Car
+
         public Car() 
         {
             Make = "Nothing yet";
@@ -40,6 +40,15 @@ namespace CarClassLibrary
             IsNew = true;
             SizeOfEngine = 0;
         }
+
+        public Car(string make, string model, int year, decimal price)
+        {
+            Make = make;
+            Model = model;
+            Year = year;
+            Price = price;
+        }
+
         public override string ToString()
         {
             return $"{Year} {Make} {Model} {Color} {Miles} - New car: {IsNew} - Engine size = {SizeOfEngine} - ${Price}";

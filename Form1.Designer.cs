@@ -199,6 +199,7 @@
             btnSortAtoZ.Text = "A -> Z";
             btnSortAtoZ.TextImageRelation = TextImageRelation.ImageAboveText;
             btnSortAtoZ.UseVisualStyleBackColor = true;
+            btnSortAtoZ.Click += BtnSortAToZ_Click;
             // 
             // listInventory
             // 
@@ -272,6 +273,7 @@
             btnSearch.TabIndex = 7;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += BtnSearch_Click;
             // 
             // txtSearch
             // 

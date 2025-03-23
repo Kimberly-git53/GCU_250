@@ -27,5 +27,24 @@ namespace CarClassLibrary
             }
             return total;
         }
+
+        public List<Car> Search(string searchTerm)
+        {
+            // Create a new list to hold the search results
+            List<Car> searchResults = new List<Car>();
+            // Convert the search term to lowercase
+            searchTerm = searchTerm.ToLower();
+            // Search the inventory for cars that contain the search term in the Make, Model, or Color properties
+            foreach (Car car in CarList)
+            {
+                if (car.Make.ToLower().Contains(searchTerm) || 
+                    car.Model.ToLower().Contains(searchTerm) || 
+                    (car.Color != null && car.Color.ToLower().Contains(searchTerm)))
+                {
+                    searchResults.Add(car);
+                }
+            }
+            return searchResults;
+        }
     }
 }

@@ -62,5 +62,43 @@ namespace CarStoreGUIApp
             // Use label6 to display the total
             lblTotal.Text = total.ToString("C");
         }
+
+        private void BtnSearch_Click(object sender, EventArgs e)
+        {
+            // Get the search term from the textbox
+            string searchTerm = txtSearch.Text;
+
+
+            // Search the inventory for cars that contain the search term in the Make, Model, or Color properties
+            List<Car> searchResults = Store.Search(searchTerm);
+            // Display the search results in the inventory listbox
+            bindingSourceInventory.DataSource = searchResults;
+
+            // Refresh the inventory listbox
+            bindingSourceInventory.ResetBindings(false);
+            return;
+
+        }
+        private bool isAscending = true;
+        private void BtnSortAToZ_Click(object sender, EventArgs e)
+        {
+            if (isAscending) 
+            {
+                // Sort the inventory by Make ascending
+                Store.CarList.Sort((x, y) => x.Make.CompareTo(y.Make));
+                isAscending = false;
+            }
+            else
+            {
+                // Sort the inventory by Make descending
+                Store.CarList.Sort((x, y) => y.Make.CompareTo(x.Make));
+                isAscending = true;
+            }
+
+            // Refresh the inventory listbox
+            bindingSourceInventory.ResetBindings(false);
+
+            return;
+        }
     }
 }
