@@ -7,17 +7,18 @@ namespace CarShopConsoleApp
         static void Main(string[] args)
         {
             Store store = new Store();
-
+            //Welcome message
             Console.Out.WriteLine("Welcome to the car shop! First you must create some cars and put " +
                 "them into the inventory. Then you may add cars to the cart. Finally, you may checkout," +
                 "which will calculate your total bill.");
 
             int action = ChooseAction();
-
+            // While loop for user actions
             while (action != 0)
             {
                 switch (action)
                 {
+                    //Create a car
                     case 1:
                         // Make of car
                         Console.WriteLine("Enter the make of the car: ");
@@ -95,25 +96,25 @@ namespace CarShopConsoleApp
                         Car car = new Car(make, model, year, color, price, miles, isNew, sizeOfEngine);
                         store.CarList.Add(car);
                         break;
-
+                    // Add car to shopping cart
                     case 2:
                         PrintStoreInventory();
                         Console.WriteLine("Enter the index of the car you would like to add to the cart: ");
                         int index = int.Parse(Console.ReadLine());
                         store.ShoppingList.Add(store.CarList[index]);
                         break;
-
+                    // Checkout shopping cart
                     case 3:
                         decimal total = store.Checkout();
                         PrintShoppingList();
                         Console.WriteLine("Your total is: " + total);
                         break;
-
+                    // Save car to inventory text file
                     case 4:
                         FileIO fileIO = new FileIO(store);
                         fileIO.SaveInventory();
                         break;
-
+                    // Display inventory text file cars
                     case 5:
                         FileIO fileIO2 = new FileIO(store);
                         store.CarList = fileIO2.LoadStore();
@@ -126,7 +127,7 @@ namespace CarShopConsoleApp
                 action = ChooseAction();
 
             }
-
+            // User input options
             int ChooseAction()
             {
                 int choice = 0;
@@ -135,7 +136,7 @@ namespace CarShopConsoleApp
                 choice = int.Parse(Console.ReadLine());
                 return choice;
             }
-
+            // Method to print store inventory
             void PrintStoreInventory()
             {
                 Console.WriteLine("Inventory:");
@@ -144,7 +145,7 @@ namespace CarShopConsoleApp
                     Console.WriteLine(i + ": " + store.CarList[i]);
                 }
             }
-
+            // Method to print shopping list
             void PrintShoppingList()
             {
                 Console.WriteLine("Shopping List:");
